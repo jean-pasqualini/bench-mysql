@@ -16,6 +16,12 @@ demo-multiple-sql-per-line: db
 	mv extended-insert.sql /tmp/in.sql
 	pv /tmp/in.sql | $(DBC)
 
+# 13 seconds (for 150 000 lines)
+demo-one-sql-per-line-with-transaction: db
+	php generate-sql-with-transaction.php
+	mv test.sql /tmp/in.sql
+	pv /tmp/in.sql | $(DBC)
+
 # 1 seconde for 150 000 lines
 demo-mysql-import: db
 	php generate-csv.php
